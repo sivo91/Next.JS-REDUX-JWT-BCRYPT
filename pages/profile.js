@@ -56,7 +56,7 @@ const handleSubmit = async (e) => {
 
          <p >Name: {name}</p>
          <p >Email: {email}</p> 
-         <p >Created: {born.substring(0,10)}</p> 
+         <p >Created: {born}</p> 
       </form>
 {/* 
       <button
