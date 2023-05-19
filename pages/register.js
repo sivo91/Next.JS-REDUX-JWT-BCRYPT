@@ -24,7 +24,7 @@ const Register = () => {
 
 
   const data = {email, name, password}
-
+ 
 
 const router = useRouter()
 
@@ -45,10 +45,24 @@ const router = useRouter()
 
  },[password, validation])  
 
-
+ 
 
 const handleSubmit = async (e) => {
   e.preventDefault()
+
+  if (
+    !name ||
+    !email ||
+    !email.includes('@') ||
+    !email.includes('.') ||
+    !password ||
+    password.trim().length < 3
+  ) {
+    console.log('error input')
+    toast.error('Invalid Credentials!')
+    return;
+  }
+
 
   const config = {
         headers: {

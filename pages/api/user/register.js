@@ -14,7 +14,7 @@ const handler = async (req, res) => {
   const email = req.body.email
   const password = req.body.password
 
- console.log(name, email, password)
+// console.log(name, email, password)
 
  await db.connect();
  

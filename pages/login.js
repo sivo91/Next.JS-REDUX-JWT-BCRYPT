@@ -78,19 +78,7 @@ const Login = () => {
                       disabled={email === '' || password === ''}
                       type='submit'>
                 Log In
-              </button>
-
-
-              <p className='text-center mt-2'>Don&apos;t have account? 
-                 <Link href='/register' 
-                       className='ms-2'
-                       style={{textDecoration: 'none'}}>
-                    Sign Up
-                 </Link> 
-              </p>
-              
-
-                  
+              </button>  
 
               {/* <Link href={'/forgotPassword'} 
                     style={{textDecoration: 'none'}}>
@@ -98,6 +86,14 @@ const Login = () => {
               </Link> */}
             
        </form>
+       <p className='text-center mt-2'>Don&apos;t have account? 
+                 <Link href='/register' 
+                       className='ms-2'
+                       style={{textDecoration: 'none'}}>
+                    Sign Up
+                 </Link> 
+        </p>
+
       </div>
     
     <style>{`
@@ -112,8 +108,10 @@ const Login = () => {
       }
       
       .formBox {
-        position: relative;
-        width: 100%;
+        position:relative;
+        width: 375px;
+        margin: 0 auto;
+        top: 200px;
       }
  
      
@@ -126,14 +124,6 @@ const Login = () => {
         margin: 0 auto;
       }
       
-      form {
-        position:relative;
-        width: 375px;
-        margin: 0 auto;
-        top: 200px;
-   
-      }
-
       .user-icon {
         font-size: 40px;
         background-color: #e3e3e3;
