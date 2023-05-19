@@ -14,6 +14,7 @@ const Login = () => {
    
    const [email, setEmail ] = useState('')
    const [password, setPassword ] = useState('')
+   const [loading, setLoading] = useState(false)
    const router = useRouter()
 
   const data = { email, password }
@@ -28,6 +29,7 @@ const Login = () => {
       }
   
   try {
+    setLoading(true)
     const res = await axios.post('/api/user/login', data, config)
     console.log(res.data)
 
@@ -42,10 +44,13 @@ const Login = () => {
 
     setEmail('')
     setPassword('')
+
+    setLoading(false)
     
   } catch (error) {
     console.log(error)
     toast.error(error.message)
+    setLoading(false)
   }
 
 }
@@ -77,7 +82,7 @@ const Login = () => {
               <button className='btn btn-primary w-100 rounded-1 mt-3'
                       disabled={email === '' || password === ''}
                       type='submit'>
-                Log In
+                {loading ? 'Processing' : 'Log In'}
               </button>  
 
               {/* <Link href={'/forgotPassword'} 

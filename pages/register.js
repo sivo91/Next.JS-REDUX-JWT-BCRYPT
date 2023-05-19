@@ -21,6 +21,7 @@ const Register = () => {
    const [confirm, setConfirm ] = useState('')
    const [validation, setValidation] = useState('')
    const [length, setLength] = useState('')
+   const [loading, setLoading] = useState('')
 
 
   const data = {email, name, password}
@@ -71,6 +72,7 @@ const handleSubmit = async (e) => {
       }
   
   try {
+    setLoading(true)
     const res = await axios.post('/api/user/register', data, config)
    // console.log(res.data)
 
@@ -81,9 +83,11 @@ const handleSubmit = async (e) => {
     setEmail('')
     setPassword('')
     setValidation('')
+    setLoading(false)
     
   } catch (error) {
     console.log(error)
+    setLoading(false)
   }
 
 }
@@ -150,7 +154,7 @@ const handleSubmit = async (e) => {
                   password.length > 12}
                 
                type='submit' >
-                Sign Up
+                {loading ? 'Processing': 'Sign Up'}
               </button>
        
        </form>

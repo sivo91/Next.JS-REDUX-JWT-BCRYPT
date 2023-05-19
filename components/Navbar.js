@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { useSelector, useDispatch } from 'react-redux'
 import { useRouter } from 'next/router';
 import { userLogOut } from '@/reduxFile/userSlice';
+import { toast } from 'react-toastify';
 
 
 const Navbar = () => {
@@ -22,6 +23,8 @@ const handleLogOut = () => {
   }
 
  dispatch(userLogOut(null))
+
+ toast.success('Sign Out!')
   
  router.push('/')
 }

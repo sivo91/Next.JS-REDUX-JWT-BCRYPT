@@ -47,7 +47,7 @@ const handler = async (req, res) => {
       email: user.email,
       createdAt: user.createdAt
    },
-   message: "login successful",
+   message: "Login Successful",
   })
 }
 
