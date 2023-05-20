@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { useEffect } from 'react'
 import Link from 'next/link'
 import { useSelector, useDispatch } from 'react-redux'
@@ -8,7 +9,7 @@ import { toast } from 'react-toastify';
 
 const Navbar = () => {
 
-const { user } = useSelector((state) => state.userAuth)
+const { user, userImg } = useSelector((state) => state.userAuth)
 
 //console.log(user)
 
@@ -39,8 +40,8 @@ const handleLogOut = () => {
 
          {
           user !== null &&  (
-              <button type="button" className="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                {/* <FiUser className='userIcon'/> */} User &nbsp;
+              <button type="button" className="btn btn-secondary dropdown-toggle my-2 rounded-1" data-bs-toggle="dropdown" aria-expanded="false">
+                {/* <FiUser className='userIcon'/> */} {user?.user?.name} &nbsp;
               </button>
           )  
          }
@@ -60,6 +61,9 @@ const handleLogOut = () => {
              user !== null && ( 
                 <>
                    <ul className="dropdown-menu ps-2">
+                    <div className="imgProfileBox">
+                      <img src={userImg} className='imgProfile' alt="img" />
+                    </div>
                     <li>
                       <Link href={'/'}
                             className='my-2'
@@ -98,6 +102,23 @@ const handleLogOut = () => {
 
      <style>{`
 
+     .imgProfileBox {
+      position: relative;
+      width: 50px;
+      height: 50px;
+      margin: 0 auto;
+      overflow: hidden;
+      border: 1px solid gray;
+      border-radius: 7px;
+     }
+
+     .imgProfile {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+     }
+
      .login {
       position: relative;
       top: 7px;
@@ -121,7 +142,8 @@ const handleLogOut = () => {
         border-radius: 6px;
         z-index: 500;
         display: flex;
-        justify-content: space-around;
+        justify-content: space-between;
+        padding: 0 25px;
         box-shadow: 1px 1px 11px gray;
        }
 

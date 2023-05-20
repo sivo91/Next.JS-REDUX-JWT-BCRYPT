@@ -1,22 +1,30 @@
+/* eslint-disable @next/next/no-img-element */
 
 
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector,useDispatch } from 'react-redux'
+import { userImage } from '@/reduxFile/userSlice';
 import axios from 'axios'
 
 
 const Profile = () => {
 
-const { user } = useSelector((state) => state.userAuth)
+const { user, userImg } = useSelector((state) => state.userAuth)
 //console.log(user)
+const dispatch = useDispatch()
+
 
 
 const [name, setName] = useState(user?.user?.name)
 const [email, setEmail] = useState(user?.user?.email)
-const [born, setBorn] = useState(user?.user?.createdAt)
+const [born, setBorn] = useState(user?.user?.createdAt || '')
+const created = born.substring(0,10)
+console.log(created) 
 const [editForm, setEditForm] = useState(false)
 
-/* 
+
+
+
 const getData = async () => {
   
   try {
@@ -25,9 +33,11 @@ const getData = async () => {
   } catch (error) {
     console.log(error)
   }
-} */
+} 
 
-/* 
+
+
+
 const handleEdit = () => {
   setEditForm(!editForm)
   
@@ -46,19 +56,46 @@ const handleSubmit = async (e) => {
   } catch (error) {
     console.log(error)
   }
-} */
+} 
+
+
+
 
   return (
     <>
       <h3 className='text-center mt-5 pt-5'>Profile</h3>
 
       <form >
+          <p>Image Profile: </p> 
+          <img src={userImg} className='imgMush' alt="img" />
+          {
+            editForm && (
+              <>
+                <p className='fw-semibold text-danger'>Select Profile Image:</p>
+                <div className="my-2">
+                  <img src={'/mush.jpg'}
+                       className='setPImg1' 
+                       onClick={() => dispatch(userImage('/mush.jpg'))}
+                       alt="img" />
 
+                  <img src={'/mickey.png'} 
+                       onClick={() => dispatch(userImage('/mickey.png'))} 
+                       className='setPImg2 mx-3' 
+                       alt="img" />
+
+                  <img src={'/dog.jpg'} 
+                       onClick={() => dispatch(userImage('/dog.jpg'))} 
+                       className='setPImg3' 
+                       alt="img" />
+                </div>
+              </>
+            )
+          }
          <p >Name: {name}</p>
          <p >Email: {email}</p> 
-         <p >Created: {born}</p> 
+         <p >Created: {created}</p> 
       </form>
-{/* 
+ 
       <button
          onClick={handleEdit}
          id='editBtn'
@@ -66,9 +103,9 @@ const handleSubmit = async (e) => {
         {editForm ? 'Close' : 'Edit'}
       </button>
 
-     {
+     {/* {
       editForm && (
-         <form className='mt-5 border p-2' onSubmit={handleSubmit}>
+         <form className='mt-5' onSubmit={handleSubmit}>
               <h3 className='text-center'>Edit Name</h3>
               <input type="text"
                     value={name}
@@ -83,10 +120,31 @@ const handleSubmit = async (e) => {
               </button>       
             </form>
       )
-     } */}
+     }  */}
 
 
       <style>{`
+     
+      .setPImg1  {
+        position: relative;
+        width: 40px;
+        cursor: pointer;
+      }
+      .setPImg2  {
+        position: relative;
+        width: 40px;
+        cursor: pointer;
+      }
+      .setPImg3  {
+        position: relative;
+        width: 60px;
+        cursor: pointer;
+      }
+
+      .imgMush {
+        position: relative;
+        width: 100px;
+      }
        
        form {
         position:relative;

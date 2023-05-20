@@ -51,18 +51,10 @@ const router = useRouter()
 const handleSubmit = async (e) => {
   e.preventDefault()
 
-  if (
-    !name ||
-    !email ||
-    !email.includes('@') ||
-    !email.includes('.') ||
-    !password ||
-    password.trim().length < 3
-  ) {
-    console.log('error input')
-    toast.error('Invalid Credentials!')
-    return;
-  }
+
+  if(!name) return toast.error('Invalid Name!')
+  if(!email.includes('@') || !email.includes('.') || !email) return toast.error('Invalid Email!')
+  if(!password || password.length < 3 || password.length > 12) return toast.error('Invalid Password!')
 
 
   const config = {

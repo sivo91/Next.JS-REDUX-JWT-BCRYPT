@@ -15,7 +15,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
     
-      <h3 className='text-center mt-5 pt-5'>hello nextads f</h3>
+      <h3 className='text-center mt-5 pt-5'>Next.JS + JWT + MongoDB + Redux</h3>
     </>
   )
 }

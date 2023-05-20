@@ -31,7 +31,7 @@ const Login = () => {
   try {
     setLoading(true)
     const res = await axios.post('/api/user/login', data, config)
-    console.log(res.data)
+    //console.log(res.data)
 
     // treba overit ci to ide :)
     dispatch(userInside(res.data))

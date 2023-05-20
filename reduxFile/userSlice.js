@@ -15,6 +15,7 @@ if (typeof window !== "undefined") {
 
 const initialState = {
   user: userState,
+  userImg : '/mush.jpg',
   isLoading: false
 }
 
@@ -28,9 +29,12 @@ const userSlice = createSlice({
     },
     userLogOut: (state) => {
       state.user = null
+    },
+    userImage: (state, action) => {
+      state.userImg = action.payload
     }
    }
 })
 
-export const {userInside, userLogOut} = userSlice.actions
+export const {userInside, userLogOut, userImage} = userSlice.actions
 export default userSlice.reducer
