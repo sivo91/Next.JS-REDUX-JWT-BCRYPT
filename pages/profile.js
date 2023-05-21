@@ -35,7 +35,7 @@ const m = created.slice(5,7)
 //console.log(m) //05
 
 const resDate = m + '-' + d + '-' + yr
-console.log(resDate) 
+//console.log(resDate) 
  
 
 
