@@ -9,7 +9,7 @@ import { toast } from 'react-toastify';
 
 const Navbar = () => {
 
-const { user, userImg } = useSelector((state) => state.userAuth)
+const { user, userImg  } = useSelector((state) => state.userAuth)
 
 //console.log(user)
 
@@ -106,7 +106,6 @@ const handleLogOut = () => {
       position: relative;
       width: 50px;
       height: 50px;
-      margin: 0 auto;
       overflow: hidden;
       border: 1px solid gray;
       border-radius: 7px;

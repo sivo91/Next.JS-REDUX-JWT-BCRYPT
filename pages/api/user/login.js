@@ -45,6 +45,7 @@ const handler = async (req, res) => {
       _id: user._id,
       name: user.name,
       email: user.email,
+      image: user.image,
       createdAt: user.createdAt
    },
    message: "Login Successful",

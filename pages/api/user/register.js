@@ -12,6 +12,7 @@ const handler = async (req, res) => {
 
   const name = req.body.name
   const email = req.body.email
+  const image = req.body.image
   const password = req.body.password
 
 // console.log(name, email, password)
@@ -23,6 +24,7 @@ const handler = async (req, res) => {
   const newUser = new User({
     name,
     email,
+    image,
     password : hashedPassword
   });
 
@@ -34,6 +36,7 @@ const handler = async (req, res) => {
     message: 'Created user!',
     _id: user._id,
     name: user.name,
+    image: user.image,
     email: user.email,
   });
 

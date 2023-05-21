@@ -22,9 +22,10 @@ const Register = () => {
    const [validation, setValidation] = useState('')
    const [length, setLength] = useState('')
    const [loading, setLoading] = useState('')
+   const [image, setImage] = useState('/mush.jpg')
 
 
-  const data = {email, name, password}
+  const data = {email, name, password, image}
  
 
 const router = useRouter()

@@ -21,6 +21,9 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+
+    if(!email.includes('@') || !email.includes('.') || !email) return toast.error('Invalid Email!')
+    if(!password || password.length < 3 || password.length > 12) return toast.error('Invalid Password!')
  
    const config = {
         headers: {
@@ -29,11 +32,11 @@ const Login = () => {
       }
   
   try {
+    
     setLoading(true)
     const res = await axios.post('/api/user/login', data, config)
     //console.log(res.data)
 
-    // treba overit ci to ide :)
     dispatch(userInside(res.data))
     if (typeof window !== "undefined") {
     window.localStorage.setItem('auth', JSON.stringify(res.data))

@@ -3,8 +3,9 @@
 
 import React, { useEffect, useState } from 'react'
 import { useSelector,useDispatch } from 'react-redux'
-import { userImage } from '@/reduxFile/userSlice';
 import axios from 'axios'
+import { toast } from 'react-toastify'
+import { userImage } from '@/reduxFile/userSlice';
 
 
 const Profile = () => {
@@ -14,26 +15,28 @@ const { user, userImg } = useSelector((state) => state.userAuth)
 const dispatch = useDispatch()
 
 
-
+const [editForm, setEditForm] = useState(false)
 const [name, setName] = useState(user?.user?.name)
 const [email, setEmail] = useState(user?.user?.email)
+
 const [born, setBorn] = useState(user?.user?.createdAt || '')
+
+//console.log(born) // 2023-05-21T04:55:14.482Z
 const created = born.substring(0,10)
-console.log(created) 
-const [editForm, setEditForm] = useState(false)
+//console.log(created)
 
+const yr = created.slice(0,4)  
+//console.log(yr) // 2023
 
+const d = created.slice(8,10)
+//console.log(d) // 21
 
+const m = created.slice(5,7)
+//console.log(m) //05
 
-const getData = async () => {
-  
-  try {
-    const res = await axios.get('/api/user/profileGet', {email})
-    console.log(res.data)
-  } catch (error) {
-    console.log(error)
-  }
-} 
+const resDate = m + '-' + d + '-' + yr
+console.log(resDate) 
+ 
 
 
 
@@ -46,19 +49,17 @@ const handleEdit = () => {
   }
 }
 
-const handleSubmit = async (e) => {
-  e.preventDefault()
+const handleEditImage = async (imgID) => {
 
   try {
-    const res = await axios.put('/api/user/profileEdit', {name, email})
-    console.log(res.data?.name)
-    getData()
+      await axios.put('/api/user/profileEdit' , {email, imgID})
   } catch (error) {
     console.log(error)
+    toast.error('Something wrong! Please try it later.')
   }
-} 
 
 
+}
 
 
   return (
@@ -75,16 +76,19 @@ const handleSubmit = async (e) => {
                 <div className="my-2">
                   <img src={'/mush.jpg'}
                        className='setPImg1' 
-                       onClick={() => dispatch(userImage('/mush.jpg'))}
+                       onClick={() => [ handleEditImage('/mush.jpg'),
+                                        dispatch(userImage('/mush.jpg'))] }
                        alt="img" />
 
                   <img src={'/mickey.png'} 
-                       onClick={() => dispatch(userImage('/mickey.png'))} 
+                       onClick={() => [handleEditImage('/mickey.png'),
+                                       dispatch(userImage('/mickey.png'))]} 
                        className='setPImg2 mx-3' 
                        alt="img" />
 
                   <img src={'/dog.jpg'} 
-                       onClick={() => dispatch(userImage('/dog.jpg'))} 
+                       onClick={() => [handleEditImage('/dog.jpg'),
+                                       dispatch(userImage('/dog.jpg'))]} 
                        className='setPImg3' 
                        alt="img" />
                 </div>
@@ -93,7 +97,7 @@ const handleSubmit = async (e) => {
           }
          <p >Name: {name}</p>
          <p >Email: {email}</p> 
-         <p >Created: {created}</p> 
+         <p >Created: {resDate}</p> 
       </form>
  
       <button

@@ -4,17 +4,21 @@ import User from "@/models/User"
 
 
 const handler = async (req, res) => {
-  
+
+  const img = req.body.imgID
+  const email = req.body.email
+  //console.log(img, email)
+
   await db.connect()
   
-  const newName = req.body.name
-  const email = req.body.email
-
   const user = await User.findOne({ email })
 
-  user.name = newName
+  user.image = img
 
-  res.status(200).send(user)
+  await user.save()
+  await db.disconnect()
+
+ res.status(200).json({ message: 'success '})
 
 }
 

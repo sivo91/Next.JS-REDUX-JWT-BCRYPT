@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
+import Link from 'next/link'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -15,7 +16,13 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
     
-      <h3 className='text-center mt-5 pt-5'>Next.JS + JWT + MongoDB + Redux</h3>
+      <h3 className='text-center mt-5 pt-5'>Next.JS / JWT / MongoDB / Redux</h3>
+
+     <Link href={'https://github.com/sivo91/Next.JS-REDUX-JWT-BCRYPT'} target='_blank'>
+       <button className='btn btn-dark rounded-1 vstack mx-auto mt-3'>
+        GitHub
+       </button>
+     </Link>
     </>
   )
 }
